@@ -18,6 +18,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public String getWeatherKey(){
         String keyvalue = null;
+        //读取配置文件中的key值
         try {
             ApplicationInfo applicationInfo = this.getPackageManager()
                     .getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);

@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="com.jxx.weatherforecast.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,7 @@
             android:name="WeatherAPI_KEY"
             android:value="77d857413f1845949c1f28207f3319d9 " />
 
-        <activity android:name=".activity.BaseActivity"></activity>
+        <activity android:name="com.jxx.weatherforecast.activity.BaseActivity"></activity>
     </application>
 
 </manifest>
