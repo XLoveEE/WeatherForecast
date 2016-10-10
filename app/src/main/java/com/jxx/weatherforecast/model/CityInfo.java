@@ -8,8 +8,8 @@ public class CityInfo {
     private String city;
     private String cnty;
     private String id;
-    private double lat;
-    private double lon;
+    private String lat;
+    private String lon;
     private String prov;
 
     public String getCity() {
@@ -36,19 +36,19 @@ public class CityInfo {
         this.id = id;
     }
 
-    public double getLat() {
+    public String getLat() {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(String lat) {
         this.lat = lat;
     }
 
-    public double getLon() {
+    public String getLon() {
         return lon;
     }
 
-    public void setLon(double lon) {
+    public void setLon(String lon) {
         this.lon = lon;
     }
 

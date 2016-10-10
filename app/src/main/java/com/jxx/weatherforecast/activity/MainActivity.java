@@ -14,7 +14,5 @@ public class MainActivity extends BaseActivity {
 
         String key = getWeatherKey();
         Log.d("WeatherAPI",key);
-
-
     }
 }
