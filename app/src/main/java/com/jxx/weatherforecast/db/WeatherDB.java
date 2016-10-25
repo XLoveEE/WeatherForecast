@@ -34,10 +34,20 @@ public class WeatherDB {
         return  weatherDB;
     }
 
+    /**
+     * 保存城市信息
+     * @param cityInfo
+     */
     public void saveCityInformation(CityInfo cityInfo){
         if(cityInfo!=null){
             ContentValues values = new ContentValues();
-
+            values.put("city",cityInfo.getCity());
+            values.put("cnty",cityInfo.getCnty());
+            values.put("id",cityInfo.getId());
+            values.put("lat",cityInfo.getLat());
+            values.put("lon",cityInfo.getLon());
+            values.put("prov",cityInfo.getProv());
+            db.insert("tb_CityInfo",null,values);
         }
     }
 }

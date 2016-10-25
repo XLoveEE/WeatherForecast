@@ -19,7 +19,7 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
             "id text," +
             "lat text," +
             "lon text," +
-            "prov)";
+            "prov text)";
     public WeatherDBHelper(Context context, String name,
                            SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -28,6 +28,7 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+           //创建城市信息表
             sqLiteDatabase.execSQL(CREATE_CITYTABLE);
         Toast.makeText(mContext,"Create successed",Toast.LENGTH_LONG).show();
     }
