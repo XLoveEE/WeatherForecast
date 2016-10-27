@@ -39,7 +39,7 @@ public class HttpUtils {
                         sb.append(response);
                     }
                     if(listener!=null){
-                        listener.onFinish(response);
+                        listener.onFinish(sb.toString());
                     }
 
                 } catch (MalformedURLException e) {

@@ -5,9 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.jxx.weatherforecast.model.CityInfo;
-
-import java.util.WeakHashMap;
-
+import com.jxx.weatherforecast.model.CityInfoArray;
 
 
 /**
