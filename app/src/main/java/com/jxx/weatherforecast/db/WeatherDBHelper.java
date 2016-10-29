@@ -20,6 +20,12 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
             "lat text," +
             "lon text," +
             "prov text)";
+    public  static final String CREATE_CONDTABLE = "create table tb_Cond(" +
+            "nid integer primary key autoincrement," +
+            "code text," +
+            "txt text" +
+            "txt_en text" +
+            "icon text)";
     public WeatherDBHelper(Context context, String name,
                            SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -30,6 +36,8 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
            //创建城市信息表
             sqLiteDatabase.execSQL(CREATE_CITYTABLE);
+            //创建天气信息表
+            sqLiteDatabase.execSQL(CREATE_CONDTABLE);
         Toast.makeText(mContext,"Create successed",Toast.LENGTH_LONG).show();
     }
 

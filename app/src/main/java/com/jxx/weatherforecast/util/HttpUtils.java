@@ -15,8 +15,7 @@ import java.net.URL;
 public class HttpUtils {
 
 
-    public static void HttpGet(final String urlvalue , final HttpCallbackListener listener){
-
+    public static void HttpGetJson(final String urlvalue , final HttpCallbackListener listener){
 
         new Thread(new Runnable() {
             @Override
@@ -58,5 +57,10 @@ public class HttpUtils {
 
             }
         }).start();
+    }
+
+
+    public static void HttpGetBitmap(String urlvalue , HttpCallbackListener listener){
+
     }
 }

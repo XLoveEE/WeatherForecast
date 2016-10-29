@@ -5,6 +5,7 @@ package com.jxx.weatherforecast.util;
  */
 
 public interface HttpCallbackListener {
+    void onFinish(byte[] bytes);
     void onFinish(String response);
     void onError(Exception e);
 }
