@@ -38,7 +38,7 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL(CREATE_CITYTABLE);
             //创建天气信息表
             sqLiteDatabase.execSQL(CREATE_CONDTABLE);
-        Toast.makeText(mContext,"Create successed",Toast.LENGTH_LONG).show();
+        //Toast.makeText(mContext,"Create successed",Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.jxx.weatherforecast.activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.facebook.stetho.Stetho;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.jxx.weatherforecast.R;
 import com.jxx.weatherforecast.db.WeatherDB;
@@ -11,12 +13,18 @@ import com.jxx.weatherforecast.model.CityInfoArray;
 import com.jxx.weatherforecast.util.HttpCallbackListener;
 import com.jxx.weatherforecast.util.HttpUtils;
 
+import okhttp3.OkHttpClient;
+
 public class NavActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
+        Stetho.initializeWithDefaults(this);
+        new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor())
+                .build();
         InitInfo();
     }
 
