@@ -4,6 +4,7 @@
     android:id="@+id/activity_nav"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/navback"
     tools:context="com.jxx.weatherforecast.activity.NavActivity">
 
 </RelativeLayout>

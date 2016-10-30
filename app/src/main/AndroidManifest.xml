@@ -18,7 +18,8 @@
             android:value="77d857413f1845949c1f28207f3319d9 " />
 
         <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.NavActivity">
+        <activity
+            android:name=".activity.NavActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

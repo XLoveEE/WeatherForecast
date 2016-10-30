@@ -16,13 +16,13 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
             "nid integer primary key autoincrement," +
             "city text," +
             "cnty text," +
-            "id text," +
+            "id text unique," +
             "lat text," +
             "lon text," +
             "prov text)";
     public  static final String CREATE_CONDTABLE = "create table tb_Cond(" +
             "nid integer primary key autoincrement," +
-            "code text," +
+            "code text unique," +
             "txt text" +
             "txt_en text" +
             "icon text)";
