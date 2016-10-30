@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.facebook.stetho.Stetho;
+import com.facebook.stetho.common.LogRedirector;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.jxx.weatherforecast.R;
@@ -12,6 +13,7 @@ import com.jxx.weatherforecast.model.CityInfo;
 import com.jxx.weatherforecast.model.CityInfoArray;
 import com.jxx.weatherforecast.util.HttpCallbackListener;
 import com.jxx.weatherforecast.util.HttpUtils;
+import com.orhanobut.logger.Logger;
 
 import okhttp3.OkHttpClient;
 
@@ -37,7 +39,7 @@ public class NavActivity extends BaseActivity {
 
             @Override
             public void onFinish(String response) {
-                Log.d("http",response);
+                Logger.json(response);
                 Gson gson = new Gson();
                 CityInfoArray cityInfoArray = gson.fromJson(response,CityInfoArray.class);
                 for(CityInfo city : cityInfoArray.getCityinfo()){
@@ -47,7 +49,7 @@ public class NavActivity extends BaseActivity {
 
             @Override
             public void onError(Exception e) {
-                Log.d("Debug",e.getMessage());
+                Logger.d(e.getMessage());
             }
         });
 
