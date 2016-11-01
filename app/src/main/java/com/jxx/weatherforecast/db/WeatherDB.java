@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.jxx.weatherforecast.model.CityInfo;
 import com.jxx.weatherforecast.model.CityInfoArray;
 
+import java.util.List;
+
 
 /**
  * Created by jxx on 2016/10/10.
@@ -48,4 +50,6 @@ public class WeatherDB {
             db.insert("tb_CityInfo",null,values);
         }
     }
+
+
 }
