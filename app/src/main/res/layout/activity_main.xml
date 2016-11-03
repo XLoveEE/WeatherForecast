@@ -78,6 +78,7 @@
                     android:layout_weight="1"
                     android:gravity="center">
                     <TextView
+                        android:id="@+id/tv_windstatus"
                         android:text="东北风"
                         android:textSize="10dp"
                         android:gravity="center"
@@ -85,6 +86,7 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/tb_windvalue"
                         android:text="2级"
                         android:textSize="20dp"
                         android:layout_width="wrap_content"
@@ -105,14 +107,15 @@
                     android:layout_weight="1"
                     android:gravity="center">
                     <TextView
-                        android:text="东北风"
+                        android:text="相对湿度"
                         android:textSize="10dp"
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:text="2级"
+                        android:id="@+id/tv_humvalue"
+                        android:text="90%"
                         android:textSize="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -130,14 +133,16 @@
                     android:layout_weight="1"
                     android:gravity="center">
                     <TextView
-                        android:text="东北风"
+                        android:id="@+id/tv_airstatus"
+                        android:text="空气良"
                         android:textSize="10dp"
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:text="2级"
+                        android:id="@+id/tv_airvalue"
+                        android:text="58"
                         android:textSize="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

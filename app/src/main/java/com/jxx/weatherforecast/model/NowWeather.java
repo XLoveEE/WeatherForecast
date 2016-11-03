@@ -91,6 +91,13 @@ public class NowWeather {
         return tmp;
     }
 
+    public String getCondCode(){
+        return  cond.getCode();
+    }
+    public String getCondTxT(){
+        return cond.getTxt();
+    }
+
     class Cond{
 
         /**
@@ -117,7 +124,6 @@ public class NowWeather {
             return code;
         }
     }
-
     class Wind{
 
 
