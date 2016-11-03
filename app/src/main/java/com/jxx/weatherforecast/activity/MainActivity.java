@@ -73,6 +73,10 @@ public class MainActivity extends BaseActivity implements IMainView{
                 });
     }
 
+    /**
+     * 显示当天天气信息
+     * @param data
+     */
     @Override
     public void showNowStatus(NowWeather data) {
         tv_tmpvalue.setText(data.getTmp());
@@ -80,11 +84,19 @@ public class MainActivity extends BaseActivity implements IMainView{
 
     }
 
+    /**
+     * 显示未来三天信息
+     * @param data
+     */
     @Override
     public void showDailyStatus(DailyForecast data) {
 
     }
 
+    /**
+     * 显示未来三小时信息
+     * @param data
+     */
     @Override
     public void showHourlyStatus(HourlyForecast data) {
 
