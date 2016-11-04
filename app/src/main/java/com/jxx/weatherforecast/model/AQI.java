@@ -19,6 +19,16 @@ public class AQI {
         this.city = city;
     }
 
+
+    public String getAqi(){
+        return  this.city.getAqi();
+    }
+
+    public String getQlty(){
+        return  this.city.getQlty();
+    }
+
+
     class City{
 
         /**

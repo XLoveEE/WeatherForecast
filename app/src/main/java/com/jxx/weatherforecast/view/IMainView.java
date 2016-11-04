@@ -1,5 +1,6 @@
 package com.jxx.weatherforecast.view;
 
+import com.jxx.weatherforecast.model.AQI;
 import com.jxx.weatherforecast.model.DailyForecast;
 import com.jxx.weatherforecast.model.HourlyForecast;
 import com.jxx.weatherforecast.model.NowWeather;
@@ -13,5 +14,5 @@ public interface IMainView {
     void showNowStatus(NowWeather data);
     void showDailyStatus(DailyForecast data);
     void showHourlyStatus(HourlyForecast data);
-
+    void showAqiStatus(AQI data);
 }

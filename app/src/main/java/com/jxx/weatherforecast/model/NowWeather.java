@@ -98,6 +98,14 @@ public class NowWeather {
         return cond.getTxt();
     }
 
+    public String getWindDir(){
+        return this.wind.getDir();
+    }
+    public String getWindSc(){
+        return  this.wind.getSc();
+    }
+
+
     class Cond{
 
         /**

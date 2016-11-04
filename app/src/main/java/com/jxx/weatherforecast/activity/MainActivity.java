@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.jxx.weatherforecast.R;
 
+import com.jxx.weatherforecast.model.AQI;
 import com.jxx.weatherforecast.model.DailyForecast;
 import com.jxx.weatherforecast.model.HourlyForecast;
 import com.jxx.weatherforecast.model.NowWeather;
@@ -79,9 +80,13 @@ public class MainActivity extends BaseActivity implements IMainView{
      */
     @Override
     public void showNowStatus(NowWeather data) {
-        tv_tmpvalue.setText(data.getTmp());
-        tv_weatherstatus.setText(data.getCondTxT());
-
+        if(data!=null){
+            tv_tmpvalue.setText(data.getTmp());
+            tv_weatherstatus.setText(data.getCondTxT());
+            tv_windstatus.setText(data.getWindDir());
+            tv_windvalue.setText(data.getWindSc());
+            tv_humvalue.setText(data.getHum());
+        }
     }
 
     /**
@@ -100,5 +105,13 @@ public class MainActivity extends BaseActivity implements IMainView{
     @Override
     public void showHourlyStatus(HourlyForecast data) {
 
+    }
+
+    @Override
+    public void showAqiStatus(AQI data) {
+        if(data!=null){
+            tv_airstatus.setText(data.getQlty());
+            tv_airvalue.setText(data.getAqi());
+        }
     }
 }
