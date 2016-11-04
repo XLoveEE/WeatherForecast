@@ -10,7 +10,6 @@ import com.jxx.weatherforecast.R;
 import com.jxx.weatherforecast.db.WeatherDB;
 import com.jxx.weatherforecast.model.CityInfo;
 import com.jxx.weatherforecast.model.CityInfoArray;
-import com.jxx.weatherforecast.util.ChangeActivityUtil;
 import com.jxx.weatherforecast.util.HttpCallbackListener;
 import com.jxx.weatherforecast.util.HttpUtils;
 
@@ -65,7 +64,7 @@ public class NavActivity extends BaseActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isFirst",true);
                     editor.commit();
-                    ChangeActivityUtil.gotoActivity(NavActivity.this,MainActivity.class);
+
                 }
                 @Override
                 public void onError(Exception e) {
@@ -73,7 +72,7 @@ public class NavActivity extends BaseActivity {
                 }
             });
         }else{
-            ChangeActivityUtil.gotoActivity(NavActivity.this,MainActivity.class);
+
         }
 
 
