@@ -5,9 +5,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.jxx.weatherforecast.model.CityInfo;
-import com.jxx.weatherforecast.model.CityInfoArray;
 
-import java.util.List;
+import com.jxx.weatherforecast.util.ApplicationUtil;
+
+
 
 
 /**
@@ -21,15 +22,15 @@ public class WeatherDB {
     private SQLiteDatabase db;
     private static WeatherDB weatherDB;
 
-    private WeatherDB(Context context){
-       WeatherDBHelper weatherDBHelper = new WeatherDBHelper(context,DB_NAME,null,VERSION);
+    private WeatherDB(){
+       WeatherDBHelper weatherDBHelper = new WeatherDBHelper(ApplicationUtil.getContext(),DB_NAME,null,VERSION);
         db = weatherDBHelper.getWritableDatabase();
     }
 
     //单例模式
-    public synchronized static WeatherDB getInstance(Context context){
+    public synchronized static WeatherDB getInstance(){
         if(weatherDB==null){
-            weatherDB = new WeatherDB(context);
+            weatherDB = new WeatherDB();
         }
         return  weatherDB;
     }
