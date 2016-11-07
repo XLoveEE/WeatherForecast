@@ -71,12 +71,9 @@ public class BasicWeather {
         return update;
     }
 
-    public void setUpdate(Update update) {
-        this.update = update;
-    }
 
 
-    class  Update{
+    public class  Update{
         private  String loc;
         private  String utc;
 

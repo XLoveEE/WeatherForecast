@@ -69,7 +69,7 @@ public class HourlyForecast {
         return tmp;
     }
 
-    class  Wind{
+    public class  Wind{
 
         /**
          * sc : 微风

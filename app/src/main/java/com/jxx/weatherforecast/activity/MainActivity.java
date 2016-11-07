@@ -21,6 +21,8 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends BaseActivity implements IMainView{
 
+    private String selectedCity;
+
     private  WeatherInfo weatherInfo=null;
     private TextView tv_tmpvalue;
     private TextView tv_weatherstatus;
@@ -64,6 +66,8 @@ public class MainActivity extends BaseActivity implements IMainView{
                         Gson gson = new Gson();
                         response = response.substring(31,response.length()-2);
                         weatherInfo = gson.fromJson(response,WeatherInfo.class);
+
+
                         return;
                     }
 
@@ -82,9 +86,9 @@ public class MainActivity extends BaseActivity implements IMainView{
     public void showNowStatus(NowWeather data) {
         if(data!=null){
             tv_tmpvalue.setText(data.getTmp());
-            tv_weatherstatus.setText(data.getCondTxT());
-            tv_windstatus.setText(data.getWindDir());
-            tv_windvalue.setText(data.getWindSc());
+            tv_weatherstatus.setText(data.getCond().getTxt());
+            tv_windstatus.setText(data.getWind().getDir());
+            tv_windvalue.setText(data.getWind().getSc());
             tv_humvalue.setText(data.getHum());
         }
     }

@@ -14,7 +14,7 @@ public class Suggestion {
     private  SuggItem trav;
     private  SuggItem uv;
 
-    class SuggItem{
+    public class SuggItem{
         private  String brf;
         private  String txt;
 

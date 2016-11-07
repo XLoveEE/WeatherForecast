@@ -20,16 +20,8 @@ public class AQI {
     }
 
 
-    public String getAqi(){
-        return  this.city.getAqi();
-    }
 
-    public String getQlty(){
-        return  this.city.getQlty();
-    }
-
-
-    class City{
+    public   class City{
 
         /**
          * no2 : 78

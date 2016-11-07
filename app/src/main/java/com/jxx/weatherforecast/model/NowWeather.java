@@ -91,22 +91,10 @@ public class NowWeather {
         return tmp;
     }
 
-    public String getCondCode(){
-        return  cond.getCode();
-    }
-    public String getCondTxT(){
-        return cond.getTxt();
-    }
-
-    public String getWindDir(){
-        return this.wind.getDir();
-    }
-    public String getWindSc(){
-        return  this.wind.getSc();
-    }
 
 
-    class Cond{
+
+    public class Cond{
 
         /**
          * txt : 晴
@@ -132,7 +120,7 @@ public class NowWeather {
             return code;
         }
     }
-    class Wind{
+    public class Wind{
 
 
         /**

@@ -14,7 +14,7 @@ public class DailyForecast {
     private String pcpn;
     private String pop;
     private String pres;
-    private Tmp tmp;
+    private Tmp tmp;//温度
     private String vis;
     private Wind wind;
 
