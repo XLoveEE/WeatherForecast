@@ -2,11 +2,16 @@ package com.jxx.weatherforecast.activity;
 
 import android.os.Bundle;
 import android.os.ConditionVariable;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.jxx.weatherforecast.R;
 
+import com.jxx.weatherforecast.adapter.DailyInfoAdapter;
+import com.jxx.weatherforecast.impl.MainPresenterImpl;
 import com.jxx.weatherforecast.model.AQI;
 import com.jxx.weatherforecast.model.DailyForecast;
 import com.jxx.weatherforecast.model.HourlyForecast;
@@ -16,7 +21,7 @@ import com.jxx.weatherforecast.util.HttpCallbackListener;
 import com.jxx.weatherforecast.util.HttpUtils;
 import com.jxx.weatherforecast.view.IMainView;
 
-import org.w3c.dom.Text;
+import java.util.List;
 
 
 public class MainActivity extends BaseActivity implements IMainView{
@@ -31,13 +36,28 @@ public class MainActivity extends BaseActivity implements IMainView{
     private TextView tv_humvalue;
     private TextView tv_airstatus;
     private TextView tv_airvalue;
+    private ListView lv_daily;
+
+    private List<DailyForecast> dailyList;
+    private MainPresenterImpl mainPresenter;
+
+    Handler handler  = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+           switch (msg.arg1){
+               case 1:{
+                  mainPresenter.UpdateWeatherInfo((WeatherInfo)msg.obj);
+               }
+           }
+        }
+    };
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mainPresenter = new MainPresenterImpl(this);
         UpdateWeatherInformation();
         InitView();
     }
@@ -50,6 +70,10 @@ public class MainActivity extends BaseActivity implements IMainView{
         tv_humvalue = (TextView)findViewById(R.id.tv_humvalue);
         tv_airstatus = (TextView)findViewById(R.id.tv_airstatus);
         tv_airvalue = (TextView)findViewById(R.id.tv_airvalue);
+        lv_daily = (ListView)findViewById(R.id.lv_daily);
+
+
+
     }
 
 
@@ -67,8 +91,10 @@ public class MainActivity extends BaseActivity implements IMainView{
                         response = response.substring(31,response.length()-2);
                         weatherInfo = gson.fromJson(response,WeatherInfo.class);
 
-
-                        return;
+                        Message msg = new Message();
+                        msg.arg1 = 1;
+                        msg.obj = weatherInfo;
+                        handler.sendMessage(msg);
                     }
 
                     @Override
@@ -98,8 +124,10 @@ public class MainActivity extends BaseActivity implements IMainView{
      * @param data
      */
     @Override
-    public void showDailyStatus(DailyForecast data) {
-
+    public void showDailyStatus(List<DailyForecast> data) {
+        DailyInfoAdapter adapter = new DailyInfoAdapter(MainActivity.this,
+                R.layout.instantiating_item,R.layout.weather_item,data);
+        lv_daily.setAdapter(adapter);
     }
 
     /**
@@ -114,8 +142,8 @@ public class MainActivity extends BaseActivity implements IMainView{
     @Override
     public void showAqiStatus(AQI data) {
         if(data!=null){
-            tv_airstatus.setText(data.getQlty());
-            tv_airvalue.setText(data.getAqi());
+            tv_airstatus.setText(data.getCity().getQlty());
+            tv_airvalue.setText(data.getCity().getAqi());
         }
     }
 }

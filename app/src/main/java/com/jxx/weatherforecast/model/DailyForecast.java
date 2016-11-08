@@ -98,7 +98,7 @@ public class DailyForecast {
         return pcpn;
     }
 
-    class Astro{
+    public class Astro{
 
         /**
          * ss : 17:11
@@ -125,7 +125,7 @@ public class DailyForecast {
         }
     }
 
-    class  Cond{
+    public class  Cond{
 
         /**
          * txt_n : 晴
@@ -174,7 +174,7 @@ public class DailyForecast {
         }
     }
 
-    class Tmp{
+    public class Tmp{
 
         /**
          * min : 0
@@ -200,7 +200,7 @@ public class DailyForecast {
         }
     }
 
-    class Wind{
+    public class Wind{
 
         /**
          * sc : 微风
