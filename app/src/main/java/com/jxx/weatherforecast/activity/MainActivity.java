@@ -1,13 +1,12 @@
 package com.jxx.weatherforecast.activity;
 
 import android.os.Bundle;
-import android.os.ConditionVariable;
-import android.os.Handler;
-import android.os.Message;
+
+import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.jxx.weatherforecast.R;
 
 import com.jxx.weatherforecast.adapter.DailyInfoAdapter;
@@ -17,16 +16,15 @@ import com.jxx.weatherforecast.model.DailyForecast;
 import com.jxx.weatherforecast.model.HourlyForecast;
 import com.jxx.weatherforecast.model.NowWeather;
 import com.jxx.weatherforecast.model.WeatherInfo;
-import com.jxx.weatherforecast.util.HttpCallbackListener;
-import com.jxx.weatherforecast.util.HttpUtils;
 import com.jxx.weatherforecast.view.IMainView;
 
 import java.util.List;
 
 
-public class MainActivity extends BaseActivity implements IMainView{
+public class MainActivity extends BaseActivity implements IMainView, View.OnClickListener {
 
     private String selectedCity;
+
 
     private  WeatherInfo weatherInfo=null;
     private TextView tv_tmpvalue;
@@ -37,29 +35,31 @@ public class MainActivity extends BaseActivity implements IMainView{
     private TextView tv_airstatus;
     private TextView tv_airvalue;
     private ListView lv_daily;
+    private TextView tv_setting;
 
     private List<DailyForecast> dailyList;
     private MainPresenterImpl mainPresenter;
 
-    Handler handler  = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-           switch (msg.arg1){
-               case 1:{
-                  mainPresenter.UpdateWeatherInfo((WeatherInfo)msg.obj);
-               }
-           }
-        }
-    };
+//    Handler handler  = new Handler(){
+//        @Override
+//        public void handleMessage(Message msg) {
+//           switch (msg.arg1){
+//               case 1:{
+//                  mainPresenter.UpdateWeatherInfo((WeatherInfo)msg.obj);
+//               }
+//           }
+//        }
+//    };
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mainPresenter = new MainPresenterImpl(this);
-        UpdateWeatherInformation();
         InitView();
+        mainPresenter = new MainPresenterImpl(this);
+        mainPresenter.UpdateWeatherInfo();
+
     }
 
     private void InitView() {
@@ -70,53 +70,37 @@ public class MainActivity extends BaseActivity implements IMainView{
         tv_humvalue = (TextView)findViewById(R.id.tv_humvalue);
         tv_airstatus = (TextView)findViewById(R.id.tv_airstatus);
         tv_airvalue = (TextView)findViewById(R.id.tv_airvalue);
+        tv_setting = (TextView)findViewById(R.id.tv_setting);
         lv_daily = (ListView)findViewById(R.id.lv_daily);
 
 
-
+        tv_setting.setOnClickListener(this);
     }
 
 
-    private  void UpdateWeatherInformation(){
-        HttpUtils.HttpGetJson("https://api.heweather.com/x3/weather?cityid=CN101010100&key=77d857413f1845949c1f28207f3319d9"
-                , new HttpCallbackListener() {
-                    @Override
-                    public void onFinish(byte[] bytes) {
-
-                    }
-
-                    @Override
-                    public void onFinish(String response) {
-                        Gson gson = new Gson();
-                        response = response.substring(31,response.length()-2);
-                        weatherInfo = gson.fromJson(response,WeatherInfo.class);
-
-                        Message msg = new Message();
-                        msg.arg1 = 1;
-                        msg.obj = weatherInfo;
-                        handler.sendMessage(msg);
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-
-                    }
-                });
-    }
 
     /**
      * 显示当天天气信息
      * @param data
      */
     @Override
-    public void showNowStatus(NowWeather data) {
-        if(data!=null){
-            tv_tmpvalue.setText(data.getTmp());
-            tv_weatherstatus.setText(data.getCond().getTxt());
-            tv_windstatus.setText(data.getWind().getDir());
-            tv_windvalue.setText(data.getWind().getSc());
-            tv_humvalue.setText(data.getHum());
-        }
+    public void showNowStatus(final NowWeather data) {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(data!=null){
+                    Log.d("weather","showNowStatus");
+                    tv_tmpvalue.setText(data.getTmp());
+                    tv_weatherstatus.setText(data.getCond().getTxt());
+                    tv_windstatus.setText(data.getWind().getDir());
+                    tv_windvalue.setText(data.getWind().getSc());
+                    tv_humvalue.setText(data.getHum());
+                }
+
+            }
+        });
+
     }
 
     /**
@@ -124,10 +108,16 @@ public class MainActivity extends BaseActivity implements IMainView{
      * @param data
      */
     @Override
-    public void showDailyStatus(List<DailyForecast> data) {
-        DailyInfoAdapter adapter = new DailyInfoAdapter(MainActivity.this,
-                R.layout.instantiating_item,R.layout.weather_item,data);
-        lv_daily.setAdapter(adapter);
+    public void showDailyStatus(final List<DailyForecast> data) {
+        Log.d("weather","showDailyStatus");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                DailyInfoAdapter adapter = new DailyInfoAdapter(MainActivity.this,
+                        R.layout.instantiating_item,R.layout.weather_item,data);
+                lv_daily.setAdapter(adapter);
+            }
+        });
     }
 
     /**
@@ -144,6 +134,16 @@ public class MainActivity extends BaseActivity implements IMainView{
         if(data!=null){
             tv_airstatus.setText(data.getCity().getQlty());
             tv_airvalue.setText(data.getCity().getAqi());
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case  R.id.tv_setting:{
+                mainPresenter.UpdateWeatherInfo();
+                break;
+            }
         }
     }
 }

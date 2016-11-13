@@ -3,7 +3,6 @@ package com.jxx.weatherforecast.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 /**
  * Created by jxx on 2016/10/10.
@@ -32,6 +31,10 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
         mContext = context;
     }
 
+    /**
+     * 第一次运行时执行
+     * @param sqLiteDatabase
+     */
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
            //创建城市信息表
@@ -41,6 +44,12 @@ public class WeatherDBHelper extends SQLiteOpenHelper {
         //Toast.makeText(mContext,"Create successed",Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * 更新数据库
+     * @param sqLiteDatabase
+     * @param i
+     * @param i1
+     */
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 

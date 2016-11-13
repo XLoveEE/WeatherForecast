@@ -8,6 +8,6 @@ import com.jxx.weatherforecast.model.WeatherInfo;
 
 public interface IMainPresenter {
     //获得天气信息
-    WeatherInfo getWeatherInformation();
-    void UpdateWeatherInfo(WeatherInfo data);;
+    //WeatherInfo getWeatherInformation();
+    void UpdateWeatherInfo();
 }
